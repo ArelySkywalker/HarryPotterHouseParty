@@ -1,0 +1,18 @@
+//- extends layout
+//- block content
+doctype html
+html
+    head
+    body
+        h1 Here's a table
+        div
+        table
+            thead
+                tr
+                    th=Teams
+            tbody
+                each team in teamdata
+                    tr(class="teamRow")
+                        td=team.CurrentPts
+                        td
+                            img(src=""+team.LogoSrc)

@@ -1,0 +1,12 @@
+[
+    {
+        "LogoSrc" : "/images/fuzzybunny.jpg",
+        "CurrentPts" : 60
+    },
+
+    {
+	"LogoSrc" : "/images/fuzzypuppy.jpg",
+	"CurrentPts" : 80
+    }
+
+]

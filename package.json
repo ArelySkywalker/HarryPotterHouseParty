@@ -1,0 +1,20 @@
+{
+  "name": "HarryPotterParty",
+  "version": "0.0.0",
+  "description": "A party in which teams compete by scoring points by completing objectives which are awarded by proctors.",
+  "main": "main.js",
+  "scripts": {
+    "test": "node main.js"
+  },
+  "keywords": [
+    "party"
+  ],
+  "author": "Stav Gold, Alex Goldberger, Arely Miramontes",
+  "license": "ISC",
+  "dependencies" :
+  	{ "http" : "latest",
+	  "express" : "latest",
+	  "path" : "latest",
+	  "fs" : "latest"
+	}
+}
