@@ -1,3 +1,4 @@
+$(document).ready(function(){		
 var nbaTeams = new Bloodhound({
   datumTokenizer: Bloodhound.tokenizers.obj.whitespace('team'),
   queryTokenizer: Bloodhound.tokenizers.whitespace,
@@ -28,4 +29,5 @@ $('#multiple-datasets .typeahead').typeahead({
   templates: {
     header: '<h3 class="league-name">NHL Teams</h3>'
   }
+});
 });
