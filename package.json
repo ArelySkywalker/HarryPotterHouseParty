@@ -15,6 +15,7 @@
   	{ "http" : "latest",
 	  "express" : "latest",
 	  "path" : "latest",
-	  "fs" : "latest"
+	  "fs" : "latest",
+	  "body-parser" : "latest"
 	}
 }

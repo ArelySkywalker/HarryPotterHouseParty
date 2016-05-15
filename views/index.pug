@@ -11,8 +11,9 @@ html
                 tr
                     th=Teams
             tbody
-                each team in teamdata
+                each team,teamName in teamdata
                     tr(class="teamRow")
+                        td=teamName
                         td=team.CurrentPts
                         td
                             img(src=""+team.LogoSrc)

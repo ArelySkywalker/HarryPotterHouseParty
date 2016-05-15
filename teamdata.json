@@ -1,12 +1,12 @@
-[
-    {
+{
+    "Ravenclaw": {
         "LogoSrc" : "/images/fuzzybunny.jpg",
         "CurrentPts" : 60
     },
 
-    {
+    "Not Ravenclaw": {
 	"LogoSrc" : "/images/fuzzypuppy.jpg",
 	"CurrentPts" : 80
     }
 
-]
+}
