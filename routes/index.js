@@ -24,9 +24,9 @@ router.post('/prefect', function(req,res) {
 	    //return console.log(err);
 	//}
     //});
-    console.log("data.length: "+data.length);
-    for(int i=0; i<data.length; i++){
-    	var val=data[i]
+    console.log("data.length: " + data.length);
+    for(int i = 0; i < data.length; i++){
+    	var val = data[i];
 	if (teamdata[val.TeamName]) {
 	    console.log(teamdata[val.TeamName].CurrentPts)
 	    teamdata[val.TeamName].CurrentPts += parseInt(val.Modifier);
