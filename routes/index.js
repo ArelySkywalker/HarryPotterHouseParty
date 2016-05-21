@@ -30,6 +30,8 @@ router.post('/prefect', function(req,res) {
 	    console.log(teamdata[val.TeamName].CurrentPts)
 	    teamdata[val.TeamName].CurrentPts += parseInt(val.Modifier);
 	}
+	else  console.log("No points added, maybe teamname is invalid")
+	console.log(teamdata[val.TeamName].CurrentPts)
     });
     res.send("");
 });
