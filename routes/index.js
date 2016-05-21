@@ -25,16 +25,16 @@ router.post('/prefect', function(req,res) {
 	//}
     //});
     console.log("data.length: " + data.length);
-    for(int i = 0; i < data.length; i++){
+    for (var int i = 0; i < data.length; i++) {
     	var val = data[i];
 	if (teamdata[val.TeamName]) {
-	    console.log(teamdata[val.TeamName].CurrentPts)
+	    console.log(teamdata[val.TeamName].CurrentPts);
 	    teamdata[val.TeamName].CurrentPts += parseInt(val.Modifier);
 	}
 	else {
 		console.log("No points added, maybe teamname is invalid");
 	}
-	console.log(teamdata[val.TeamName].CurrentPts)
+	console.log(teamdata[val.TeamName].CurrentPts);
     });
     res.send("");
 });
