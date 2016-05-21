@@ -33,7 +33,7 @@ router.post('/prefect', function(req,res) {
 	    console.log(teamdata[val.TeamName].CurrentPts);
 	    teamdata[val.TeamName].CurrentPts += parseInt(val.Modifier);
 	}
-    });
+    }
     res.send("");
 });
 
