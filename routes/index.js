@@ -26,8 +26,9 @@ router.post('/prefect', function(req,res) {
     //});
     console.log("data consists of "+data.length+" elements.");
     data.forEach(function(val) {
+    	console.log("This is inside the foreach loop");
 	if (teamdata[val.TeamName]) {
-	    console.log(teamdata[val.TeamName].CurrentPts)
+	    console.log(teamdata[val.TeamName].CurrentPts);
 	    teamdata[val.TeamName].CurrentPts += parseInt(val.Modifier);
 	}
     });
