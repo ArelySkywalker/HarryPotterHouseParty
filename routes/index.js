@@ -25,7 +25,7 @@ router.post('/prefect', function(req,res) {
 	//}
     //});
     console.log("data consists of "+data.length+" elements.");
-    for (i = 0; i < data.length; i++) {
+    for (i = 0; i <= data.length; i++) {
     	val = data[i];
     	console.log("This is inside the foreach loop. Printing val:");
     	console.log(val);
