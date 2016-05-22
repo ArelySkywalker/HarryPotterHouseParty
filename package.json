@@ -1,6 +1,6 @@
 {
   "name": "HarryPotterParty",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "A party in which teams compete by scoring points by completing objectives which are awarded by proctors.",
   "main": "main.js",
   "scripts": {

@@ -3,17 +3,34 @@
 doctype html
 html
     head
+        style
+            include style.css
     body
-        h1 Here's a table
+        h1 Team Scores
         div
-        table
+        table(class="scoreTable")
             thead
                 tr
-                    th=Teams
+                    th Teams
             tbody
-                each team,teamName in teamdata
+                - 
+                    var teamArray = [];
+                    for (var name in teamdata) {
+                        var teamArrObj = teamdata[name];
+                        teamArrObj.name = name;
+                        teamArray.push(teamArrObj);
+                    }
+                    teamArray.sort(function(a,b){
+                        return b.CurrentPts - a.CurrentPts;
+                        }
+                    );
+
+                each team in teamArray
                     tr(class="teamRow")
-                        td=teamName
-                        td=team.CurrentPts
                         td
-                            img(src=""+team.LogoSrc)
+                            div(class="teamAvatar")
+                                img(src=""+team.LogoSrc)
+                                span(class="caption")
+                                    =team.name
+                        td
+                            h2=team.CurrentPts

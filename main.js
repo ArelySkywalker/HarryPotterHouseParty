@@ -2,11 +2,10 @@
 //var getJSON = require("get-json");
 var http = require("http");
 var app = require("./app.js");
-//var teamdata = getJSON("./teamdata.json");
-var users = [
-    { name: 'Duncan',   email: 'duncan@email.com'},
-    { name: 'Bob',  email: 'bob@email.com'}
-];
+
+//var teamdata used to get created here, but now it gets created in the router
+//that handles top-levels requests, routes/index.
+
 //http.createServer(function (request, response) {
 	////Send the HTTP header
 	////HTTP status: 200: OK
