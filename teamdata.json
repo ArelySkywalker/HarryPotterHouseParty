@@ -1,11 +1,11 @@
 {
     "Ravenclaw": {
-        "LogoSrc" : "/images/fuzzybunny.jpg",
+        "LogoSrc" : "/images/Ravenclaw.png",
         "CurrentPts" : 60
     },
 
     "Not Ravenclaw": {
-	"LogoSrc" : "/images/fuzzypuppy.jpg",
+	"LogoSrc" : "/images/NotRavenclaw.png",
 	"CurrentPts" : 80
     }
 
