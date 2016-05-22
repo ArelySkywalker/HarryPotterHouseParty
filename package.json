@@ -16,6 +16,7 @@
 	  "express" : "latest",
 	  "path" : "latest",
 	  "fs" : "latest",
-	  "body-parser" : "latest"
+	  "body-parser" : "latest",
+	  "pug" : "latest"
 	}
 }
