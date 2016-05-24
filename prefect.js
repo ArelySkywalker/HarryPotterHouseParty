@@ -20,44 +20,79 @@ $.fn.serializeRowToObjectArray = function()
 };
 var counter = 1;
 //TODO: col is duplication of thead in views/prefect.html
-var col = ["TeamName","PointCategory","PointSubcategory","Modifier"]
+var col = ["TeamName","PointCategory","PointSubcategory","BaselineValue","Modifier"]
+
+var categories = {
+    "Bring provisions" : {
+	"Small snack" : 10,
+	"Alcohol" : 15,
+    	"Big snack" : 20},
+    "Win a game" : {
+	"HP dice game" : 15,
+	"HP Pong w/o snitch" : 20,
+	"Codenames/Patchwork/Resistance" : 25,
+    	"Long game" : 40,
+    	"HP Pong with snitch" : 50},
+    "Get drunk" : {
+	"Take a shot" : 10,
+	"Brew a potion" : 15},
+    "Engage in costumed antics" : {
+	"Wear a costume" : 15,
+	"Re-enact a scene (2 mins)": 30,
+	"Win costume contest" : 50}
+};
+
 var teamNames;
+
+var onSubcategoryChange = function() {
+    var thisRow = $(this).closest('tr');
+    var baselineValInput = $('input[name="'+col[3]+'"]',thisRow);
+    var catSelect = $('.category',thisRow);
+    baselineValInput.val(categories[catSelect.val()][$(this).val()]);
+};
+
+var onCategoryChange = function() {
+    var thisRow = $(this).closest('tr');
+    var subCatCell = $('#cellSubcategory',thisRow);
+    subCatCell.empty();
+    var subCatSelect = makeSelect(col[2],Object.keys(categories[$(this).val()]));
+    subCatCell.append(subCatSelect);
+    $('#cellSubcategory select').change(onSubcategoryChange).change();
+};
+
+var makeSelect = function(selectName,selectItems) {
+    var newSelect = document.createElement('select');
+    newSelect.name=selectName;
+    for (itemIdx in selectItems) {
+	var name = selectItems[itemIdx];
+	newSelect.add(new Option(name,name));
+    }
+    return newSelect;
+};
+
 var makeRow = function() {
     var newRow = $('<tr></tr>');
-
-    //$('table.authors-list').find('tbody').append('<tr>');
-    //var newRow=$('tr').get(-1);
-    //var teamNameCell = newRow.append('<td>');
-    var teamNameCell = $('<td>');
-    var teamNameSelect = document.createElement('select');
-    teamNameSelect.name=col[0];
-    for (teamNameIdx in teamNames) {
-	var name = teamNames[teamNameIdx];
-	teamNameSelect.add(new Option(name,name));
-    }
-    teamNameCell.append(teamNameSelect);
-    teamNameCell.appendTo(newRow);
-    $('<td><input type="text" name="last_name"/></td><td>0</td><<td><input type="text" name="'+col[3]+'"/>').appendTo(newRow);
+    $('<td>').append(makeSelect(col[0],teamNames)).appendTo(newRow);
+    var catSelect = makeSelect(col[1],Object.keys(categories));
+    catSelect.className += "category";
+    $('<td>').append(catSelect).appendTo(newRow);
+    var subCatCell = $('<td>');
+    subCatCell.attr("id","cellSubcategory");
+    subCatCell.appendTo(newRow);
+    var baselineValInput = $('<input type="text" name="'+col[3]+'" readonly/>');
+    baselineValInput.appendTo(newRow);
+    $('<td><input type="text" name="'+col[4]+'"/></td>').appendTo(newRow);
     $('table.authors-list').append(newRow);
-    //teamNameCell.appendChild(teamNameSelect);
-    ////make category cell
-    //teamNameCell = newRow.append($('<td>'));
-    ////make subcategory cell
-    //teamNameCell = newRow.append($('<td>'));
-    ////make modifier cell
-    //teamNameCell = newRow.append($('<td>'));
+    $('.category',newRow).change(onCategoryChange).change();
+};
 
-}
+
 $(document).ready(function() {
     $.get({
 	url:'/team-names',
 	success: function(res) {
 	    teamNames=JSON.parse(res);
 	    makeRow();
-	    //var table = $('#dataTable').dataTable({
-		//paging: false,
-		//searching: false
-	    //});
 	}
     });
 
@@ -74,4 +109,6 @@ $(document).ready(function() {
 	});
 	$.post('/prefect',{data:JSON.stringify(data)});
     });
+
+
 });
