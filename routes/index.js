@@ -1,5 +1,4 @@
 var url = require('url');
-var WebSocketServer = require('ws').Server;
 
 var express = require('express');
 var router = express.Router();
