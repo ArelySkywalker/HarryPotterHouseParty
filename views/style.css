@@ -1,12 +1,50 @@
+body {
+  font-family: fantasy;
+  margin: 0;
+    background-image: url('../images/hogwarts.jpeg');
+    background-position: center center;
+    background-size: cover;
+    height: 750px;
+    width: 100%;
+}
+
+.header-title {
+    /**background-color: #2f3539;**/
+    color: white;
+    text-shadow: 1px 1px 2px black, 0 0 40px black, 0 0 25px white;
+    font-size: 65px;
+    font-weight: bold;
+    margin: auto;
+}
+
+.header-subtitle {
+    color: white;
+    text-shadow: 1px 1px 2px black, 0 0 40px white, 0 0 25px white;
+    font-size: 20px;
+    font-weight: 100;
+    margin: 20px auto 20px auto;
+    width: 300 px;
+    align-content: center;
+    align-items: center;
+}
+
+.title-wrapper {
+    padding-top: 100px;
+    text-align: center;
+    width: 100%;
+    align-content: center;
+}
+
 table.scoreTable {
+    color: white;
     margin-right:auto;
     margin-left:auto;
     table-layout:auto;
 }
-.scoreTable td {
+td {
     white-space:nowrap;
 }
-h1 {
+h1,h2 {
     text-align:center;
 }
 div.teamAvatar {
@@ -17,7 +55,25 @@ div.teamAvatar {
 img {
     width: 300px;
     height: 300px;
+
 }
 .caption {
     display: block;
+    font-size: 40px;
+    margin: 20px auto 20px auto;
+}
+
+#pts1 {
+    color: white;
+    text-shadow: 1px 1px 2px white, 0 0 40px black, 0 0 25px blue;
+    font-size: 60px;
+    margin: 20px auto 20px auto;
+
+}
+#pts2 {
+    color: white;
+    text-shadow: 1px 1px 2px white, 0 0 40px black, 0 0 25px red;
+    font-size: 60px;
+    margin: 20px auto 20px auto;
+
 }
