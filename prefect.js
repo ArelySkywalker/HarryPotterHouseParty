@@ -20,7 +20,7 @@ $.fn.serializeRowToObjectArray = function()
 };
 var counter = 1;
 //TODO: col is duplication of thead in views/prefect.html
-var col = ["TeamName","PointCategory","PointSubcategory","BaselineValue","Modifier"]
+var col = ["HouseName","PointCategory","PointSubcategory","BaselineValue","Modifier"]
 
 var categories = {
     "Bring provisions" : {
@@ -89,7 +89,7 @@ var makeRow = function() {
 
 $(document).ready(function() {
     $.get({
-	url:'/team-names',
+	url:'/house-names',
 	success: function(res) {
 	    teamNames=JSON.parse(res);
 	    makeRow();

@@ -7,6 +7,14 @@ var router = express.Router();
 var fs = require('fs');
 var teamdata = JSON.parse(fs.readFileSync('teamdata.json', 'utf8'));
 
+//Construct team index for houses
+var houseIndex = {};
+for (var teamName in teamdata) {
+    for (var houseName in teamdata[teamName].Houses) {
+        houseIndex[houseName] = teamName;
+    }
+}
+
 var server = require('http').createServer();
 //top-level variable holds reference to ws so we can send data as part of POST
 var wsRef;
@@ -52,21 +60,26 @@ router.get('/prefect', function(req, res, next) {
 });
 
 // GET team names from server.
-router.get('/team-names', function(req, res, next) {
-    res.send(JSON.stringify(Object.keys(teamdata)));
+router.get('/house-names', function(req, res, next) {
+    res.send(JSON.stringify(Object.keys(houseIndex)));
 });
 
 // POST new score results to the server.
 router.post('/prefect', function(req,res) {
     var data = JSON.parse(req.body.data);
     data.forEach(function(val) {
-	if (teamdata[val.TeamName]) {
+	if (houseIndex[val.HouseName]) {
 	    var scoreDel = parseInt(val.BaselineValue) + (parseInt(val.Modifier) || 0);
-	    teamdata[val.TeamName].CurrentPts += scoreDel;
+	    teamdata[houseIndex[val.HouseName]].Houses[val.HouseName] += scoreDel;
 	}
     });
     var scores = [];
-    for (var prop in teamdata) scores.push(teamdata[prop].CurrentPts);
+    for (var team in teamdata) {
+        var teamscore = [];
+        var houseList = teamdata[team].Houses;
+        for (var house in houseList) teamscore.push(houseList[house]);
+        scores.push(teamscore);
+    }
     wsRef.send(JSON.stringify(scores));
     res.send("");
 });

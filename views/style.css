@@ -3,7 +3,7 @@ table.scoreTable {
     margin-left:auto;
     table-layout:auto;
 }
-td {
+.scoreTable td {
     white-space:nowrap;
 }
 h1 {

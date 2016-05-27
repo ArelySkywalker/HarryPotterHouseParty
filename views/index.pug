@@ -20,5 +20,13 @@ html
                                 img(src=""+team.LogoSrc)
                                 span(class="caption")
                                     =teamname
-                                h2(class="CurrentPts")=team.CurrentPts
+                                    - var CurrentPts = 0; var HouseList="";
+                                each housePts,houseName in team.Houses
+                                    - HouseList += "<li>"+houseName+": <span class='hsPt' id="+houseName+">"+housePts+"</span></li>"
+                                    - CurrentPts += housePts
+                                h2(class="CurrentPts")=CurrentPts
+                                unless Object.keys(team.Houses).length==1
+                                    .houseList.
+                                        !{HouseList}
+                                    
 
