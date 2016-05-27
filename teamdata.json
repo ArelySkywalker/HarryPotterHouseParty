@@ -7,7 +7,7 @@
     },
 
     "Not Ravenclaw": {
-        "LogoSrc" : "/images/NotRavenclaw.png",
+        "LogoSrc" : "/images/NonRavenclaw.png",
         "Houses" : {
             "Gryffindor" : 25,
             "Slytherin" : 40,
