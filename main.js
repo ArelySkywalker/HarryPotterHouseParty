@@ -3,6 +3,6 @@
 var http = require("http");
 var app = require("./app.js");
 
-app.listen(8079, function() {
-    console.log('server running at http://127.0.0.1:97171');
+app.listen(80, function() {
+    console.log('server running at http://127.0.0.1:80');
 });
