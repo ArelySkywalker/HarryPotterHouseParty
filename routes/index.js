@@ -44,6 +44,10 @@ router.get('/', function(req, res, next) {
     res.render('index', {teamdata: teamdata});
 });
 
+router.get('/test', function(req, res, next) {
+    res.send("WHAT WHAT IN THE BUTT");
+});
+
 // GET prefect score updating window.
 router.get('/prefect', function(req, res, next) {
     res.render('prefect');
