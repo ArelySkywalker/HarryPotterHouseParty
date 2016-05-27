@@ -1,8 +1,21 @@
+var url = require('url');
+var WebSocketServer = require('ws').Server;
+
 var express = require('express');
 var router = express.Router();
 
 var fs = require('fs');
 var teamdata = JSON.parse(fs.readFileSync('teamdata.json', 'utf8'));
+
+var server = require('http').createServer();
+//top-level variable holds reference to ws so we can send data as part of POST
+var wsRef;
+var wss = new WebSocketServer({ server: server });
+wss.on('connection', function connection(ws) {
+    wsRef = ws;
+    console.log("New listener");
+});
+server.listen(81, function() {console.log('websocket server listening')});
 
 //For the time being, there's absolutely no reason to keep the category info on
 //the server and beam info back and forth from it to the client. (If the
@@ -30,7 +43,6 @@ var teamdata = JSON.parse(fs.readFileSync('teamdata.json', 'utf8'));
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-//  res.render('index', { title: 'Express' });
     res.render('index', {teamdata: teamdata});
 });
 
@@ -47,20 +59,15 @@ router.get('/team-names', function(req, res, next) {
 // POST new score results to the server.
 router.post('/prefect', function(req,res) {
     var data = JSON.parse(req.body.data);
-    //console.log(JSON.stringify(data)+" is my JAM THO");
-    //fs.writeFile("testFile",data, function(err) {
-	//if(err) {
-	    //return console.log(err);
-	//}
-    //});
-    console.log("data consists of "+data.length+" elements.");
     data.forEach(function(val) {
 	if (teamdata[val.TeamName]) {
 	    var scoreDel = parseInt(val.BaselineValue) + (parseInt(val.Modifier) || 0);
 	    teamdata[val.TeamName].CurrentPts += scoreDel;
-	    console.log(teamdata[val.TeamName].CurrentPts);
 	}
     });
+    var scores = [];
+    for (var prop in teamdata) scores.push(teamdata[prop].CurrentPts);
+    wsRef.send(JSON.stringify(scores));
     res.send("");
 });
-    module.exports = router;
+module.exports = router;

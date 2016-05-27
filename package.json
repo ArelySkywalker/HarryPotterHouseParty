@@ -11,12 +11,13 @@
   ],
   "author": "Stav Gold, Alex Goldberger, Arely Miramontes",
   "license": "ISC",
-  "dependencies" :
-  	{ "http" : "latest",
-	  "express" : "latest",
-	  "path" : "latest",
-	  "fs" : "latest",
-	  "body-parser" : "latest",
-	  "pug" : "latest"
-	}
+  "dependencies": {
+    "body-parser": "latest",
+    "express": "latest",
+    "fs": "latest",
+    "http": "latest",
+    "path": "latest",
+    "pug": "latest",
+    "ws": "^1.1.0"
+  }
 }

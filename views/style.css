@@ -1,17 +1,22 @@
 table.scoreTable {
     margin-right:auto;
     margin-left:auto;
+    table-layout:auto;
+}
+td {
+    white-space:nowrap;
+}
+h1 {
+    text-align:center;
 }
 div.teamAvatar {
     vertical-align: top;
     display: inline-block;
     text-align: center;
-    width: 120px;
 }
 img {
-    width: 100px;
-    height: 100px;
-    background-color: grey;
+    width: 300px;
+    height: 300px;
 }
 .caption {
     display: block;
