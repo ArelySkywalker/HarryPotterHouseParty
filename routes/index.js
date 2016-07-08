@@ -1,5 +1,4 @@
 var url = require('url');
-var WebSocketServer = require('ws').Server;
 
 var express = require('express');
 var router = express.Router();
@@ -16,15 +15,6 @@ for (var teamName in teamdata) {
 }
 
 var server = require('http').createServer();
-//top-level variable holds reference to ws so we can send data as part of POST
-var wsRef;
-var wss = new WebSocketServer({ server: server });
-wss.on('connection', function connection(ws) {
-    wsRef = ws;
-    console.log("New listener");
-});
-server.listen(8078, function() {console.log('websocket server listening')});
-
 //For the time being, there's absolutely no reason to keep the category info on
 //the server and beam info back and forth from it to the client. (If the
 //category list were really big, that would be concerning -- but it's not.) So I've put all
@@ -54,6 +44,10 @@ router.get('/', function(req, res, next) {
     res.render('index', {teamdata: teamdata});
 });
 
+router.get('/test', function(req, res, next) {
+    res.send("WHAT WHAT IN THE BUTT");
+});
+
 // GET prefect score updating window.
 router.get('/prefect', function(req, res, next) {
     res.render('prefect');
@@ -73,14 +67,19 @@ router.post('/prefect', function(req,res) {
 	    teamdata[houseIndex[val.HouseName]].Houses[val.HouseName] += scoreDel;
 	}
     });
+    res.send("");
+});
+
+// GET current scores from server.
+router.get('/update-scoreboard', function(req,res) {
+
     var scores = [];
     for (var team in teamdata) {
-        var teamscore = [];
-        var houseList = teamdata[team].Houses;
-        for (var house in houseList) teamscore.push(houseList[house]);
-        scores.push(teamscore);
+	var teamscore = [];
+	var houseList = teamdata[team].Houses;
+	for (var house in houseList) teamscore.push(houseList[house]);
+	scores.push(teamscore);
     }
-    wsRef.send(JSON.stringify(scores));
-    res.send("");
+    res.send(JSON.stringify(scores));
 });
 module.exports = router;
