@@ -1,0 +1,18 @@
+{
+    "Ravenclaw": {
+        "LogoSrc" : "/images/Ravenclaw.png",
+        "Houses" : {
+            "Ravenclaw" : 60
+        }
+    },
+
+    "Not Ravenclaw": {
+        "LogoSrc" : "/images/NotRavenclaw.png",
+        "Houses" : {
+            "Gryffindor" : 25,
+            "Slytherin" : 40,
+            "Hufflepuff" : 15
+        }
+    }
+
+}

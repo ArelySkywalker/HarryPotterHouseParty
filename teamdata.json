@@ -1,18 +1,31 @@
 {
     "Ravenclaw": {
-        "LogoSrc" : "/images/Ravenclaw.png",
+        "LogoSrc" : "/images/AllHouses/Ravenclaw.png",
         "Houses" : {
             "Ravenclaw" : 60
         }
     },
-
-    "Not Ravenclaw": {
-        "LogoSrc" : "/images/NotRavenclaw.png",
+    
+    "Slytherin": {
+        "LogoSrc" : "/images/AllHouses/Slytherin.png",
         "Houses" : {
-            "Gryffindor" : 25,
-            "Slytherin" : 40,
-            "Hufflepuff" : 15
+            "Slytherin" : 60
         }
-    }
+    },
+    
+    "Gryffindor": {
+        "LogoSrc" : "/images/AllHouses/Gryffindor.png",
+        "Houses" : {
+            "Gryffindor" : 60
+        }
+    },
+    
+    "Hufflepuff": {
+        "LogoSrc" : "/images/AllHouses/Hufflepuff.png",
+        "Houses" : {
+            "Hufflepuff" : 60
+        }
+    },
+
 
 }
