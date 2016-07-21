@@ -1,5 +1,10 @@
 # HarryPotterParty
 5/10/16
+
+@authors Stav Gold, Alex Goldberger and Arely Miramontes
+
+Website URL: http://www.harrypotterhouseparty.com/
+
 What up, my glip-glops,
 
 Here's how to run the code I've written and also how to futz with it.
