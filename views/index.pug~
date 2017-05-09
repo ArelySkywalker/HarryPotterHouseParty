@@ -17,9 +17,9 @@ html
                 tr(class="teamRow")
                     - var teamIdx = 1;
                     each team,teamname in teamdata
-                        td
+                        td(class="team-col"  id="team"+teamIdx)
                             div(class="teamAvatar")
-                                img(src=""+team.LogoSrc)
+                                //- img(src=""+team.LogoSrc)
                                 span(class="caption")
                                     =teamname
                                     - var CurrentPts = 0; var HouseList="";

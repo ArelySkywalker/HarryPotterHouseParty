@@ -1,17 +1,23 @@
+/* latin */
+@font-face {
+  font-family: 'Homemade Apple';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Homemade Apple'), local('HomemadeApple'), url(https://fonts.gstatic.com/s/homemadeapple/v6/yg3UMEsefgZ8IHz_ryz86EW_vJ3SwAPP1y1E1dXjZPo.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
 body {
-  font-family: fantasy;
+  font-family: 'Homemade Apple', cursive;
   margin: 0;
-    background-image: url('../images/hogwarts.jpeg');
-    background-position: center center;
-    background-size: cover;
-    height: 800px;
+    background-color: black;
+    height: 100vh;
     width: 100%;
 }
 
 .header-title {
     /**background-color: #2f3539;**/
     color: white;
-    text-shadow: 1px 1px 2px black, 0 0 40px black, 0 0 25px white;
     font-size: 65px;
     font-weight: bold;
     margin: auto;
@@ -19,7 +25,6 @@ body {
 
 .header-subtitle {
     color: white;
-    text-shadow: 1px 1px 2px black, 0 0 40px white, 0 0 25px white;
     font-size: 20px;
     font-weight: 100;
     margin: 20px auto 20px auto;
@@ -37,19 +42,26 @@ body {
 
 table.scoreTable {
     color: white;
-    margin-right:auto;
-    margin-left:auto;
+    height: 100vh;
+    width: 100%;
+    text-align: center;
     table-layout:auto;
 }
 td {
     white-space:nowrap;
     vertical-align:top;
 }
+
+.team-col {
+    width: 25%;
+}
+
 h1,h2 {
     text-align:center;
 }
 div.teamAvatar {
     vertical-align: top;
+    padding-top: 60vh;
     display: inline-block;
     text-align: center;
 }
@@ -59,22 +71,41 @@ img {
     margin: 20px auto 0 auto;
 }
 .caption {
-    display: block;
-    font-size: 40px;
+    color: black;
+    display: none;
+    font-size: 2em;
     margin: 20px auto 20px auto;
 }
 
-#pts1 {
+.CurrentPts {
     color: white;
-    text-shadow: 1px 1px 2px white, 0 0 40px black, 0 0 25px blue;
-    font-size: 60px;
-    margin: 20px auto 20px auto;
-
+    font-size: 3em;
 }
-#pts2 {
-    color: white;
-    text-shadow: 1px 1px 2px white, 0 0 40px black, 0 0 25px red;
-    font-size: 60px;
-    margin: 20px auto 20px auto;
 
+.submit-div {
+    padding-left: 20px;
+}
+
+#team1 {
+    background-image: url('../images/ravenclaw.gif');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+#team2 {
+    background-image: url('../images/slytherin.gif');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+#team3 {
+    background-image: url('../images/gryffindor.gif');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+#team4 {
+    background-image: url('../images/hufflepuff.gif');
+    background-size: contain;
+    background-repeat: no-repeat;
 }
