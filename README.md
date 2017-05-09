@@ -21,8 +21,8 @@ So Express is a web application framework based on node.js, and we use it for al
 (Still not sure what needs a lot of explanation and what doesn't. I'll update this section as it becomes clear what is unclear.)
 
 ## Still to do:
-* We need a way to push score updates to the server. At first, this can just be a button on the scoreboard view, but eventually it should be its own view, which should be able to pull typical achievement scores by category from the server.
-* The scoreboard view should automatically update its table whenever the server receives a score update. How will the scoreboard, which is a client, know when the server has received new data? Maybe the server should keep track of everyone displaying the scoreboard (can be done) and fire an event at them with the necessary data in?
+* ~~We need a way to push score updates to the server. At first, this can just be a button on the scoreboard view, but eventually it should be its own view, which should be able to pull typical achievement scores by category from the server.~~
+* ~~The scoreboard view should automatically update its table whenever the server receives a score update. How will the scoreboard, which is a client, know when the server has received new data? Maybe the server should keep track of everyone displaying the scoreboard (can be done) and fire an event at them with the necessary data in?~~
 
 
 ## New Year New site!
