@@ -79,7 +79,7 @@ var makeRow = function() {
     var subCatCell = $('<td>');
     subCatCell.attr("id","cellSubcategory");
     subCatCell.appendTo(newRow);
-    var baselineValInput = $('<td><input type="text" name="'+col[3]+'" readonly/></td>');
+    var baselineValInput = $('<input type="text" name="'+col[3]+'" readonly/>');
     baselineValInput.appendTo(newRow);
     $('<td><input type="text" name="'+col[4]+'"/></td>').appendTo(newRow);
     $('table.authors-list').append(newRow);

@@ -78,7 +78,3 @@ img {
     margin: 20px auto 20px auto;
 
 }
-
-.submit-div {
-    padding-left: 20px;
-}

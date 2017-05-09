@@ -14,12 +14,7 @@
 
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    
-	<style>
-	  .submit-div {padding-left: 20px;}
-	  </style>
-
-</head>
+    </head>
 	<body>
 	  <div class="table-responsive">
 	    <table class="authors-list table" id="dataTable" name="theTable">
