@@ -1,5 +1,5 @@
 #Custom Ignore
-
+node_modules
 
 # Windows image file caches
 Thumbs.db
