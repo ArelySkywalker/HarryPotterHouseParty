@@ -7,12 +7,42 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
 }
 
+@font-face {
+  font-family: 'HarryPotter';
+  src: url('/css/fonts/HarryPotter.ttf') format('truetype');
+}
+
+.font-harry-potter {
+    font-family:'HarryPotter';
+}
+
+@font-face {
+  font-family: 'Hogwarts';
+  src: url('/css/fonts/Hogwarts.ttf') format('truetype');
+}
+
+.font-hogwarts {
+    font-family:'Hogwarts';
+}
+
+@font-face {
+  font-family: 'Inkpot';
+  src: url('/css/fonts/Inkpot.ttf') format('truetype');
+}
+
+.font-inkpot {
+    font-family:'Inkpot';
+}
+
+
 html { font-size: 10px; }
 
 body {
   font-family: 'Homemade Apple', cursive;
   margin: 0;
     background-color: black;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .clearfix::after {
@@ -23,21 +53,24 @@ body {
 
 .header-title {
     /**background-color: #2f3539;**/
-    color: white;
-    font-size: 4em;
-    line-height: 1.8;
-    font-weight: bold;
+    font-family:'HarryPotter';
+    color: #fff788;
+    text-shadow: 2px 2px rgba(255,255,255,0.5);
+    font-weight: normal;
+    font-size: 7em;
+    line-height: 1.1;
     margin: auto;
     padding: 20px 20px;
 }
 
 .header-subtitle {
+    font-family:'Hogwarts';
     clear: both;
     color: white;
-    font-size: 20px;
+    font-size: 2rem;
+    line-height: 1.5;
     font-weight: 100;
     margin: 20px 15px;
-    width: 300 px;
     align-content: center;
     align-items: center;
 }
@@ -100,7 +133,9 @@ img {
 
 .CurrentPts {
     color: white;
-    font-size: 6em;
+    font-size: 5em;
+    font-weight: normal;
+    font-family:'Inkpot';
     margin: 0;
 }
 
