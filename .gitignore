@@ -1,5 +1,6 @@
 #Custom Ignore
 node_modules
+.htaccess
 
 # Windows image file caches
 Thumbs.db
