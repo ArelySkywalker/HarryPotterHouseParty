@@ -1,6 +1,7 @@
 var url = require('url');
 
 var express = require('express');
+var passport = require('passport');
 var router = express.Router();
 
 var fs = require('fs');
@@ -49,7 +50,7 @@ router.get('/test', function(req, res, next) {
 });
 
 // GET prefect score updating window.
-router.get('/prefect', function(req, res, next) {
+router.get('/prefect', isLoggedIn, function(req, res, next) {
     res.render('prefect');
 });
 
@@ -58,8 +59,36 @@ router.get('/house-names', function(req, res, next) {
     res.send(JSON.stringify(Object.keys(houseIndex)));
 });
 
+// GET the login screen
+router.get('/login', function(req, res) {
+	res.render('login');
+});
+
+// POST from login
+router.post('/login', passport.authenticate('local-login', {
+	successRedirect: '/prefect',
+	failureRedirect: '/login'
+}));
+
+// GET the register page
+router.get('/register', function(req, res) {
+	res.render('register');
+});
+
+// POST from register
+router.post('/register', passport.authenticate('local-signup', {
+	successRedirect : '/login',
+	failureRedirect : '/register'
+}));
+
+// Log user out and redirect to home page
+router.get('logout', function(req, res) {
+	req.logout();
+	res.redirect('/');
+});
+
 // POST new score results to the server.
-router.post('/prefect', function(req,res) {
+router.post('/prefect', isLoggedIn, function(req,res) {
     var data = JSON.parse(req.body.data);
     data.forEach(function(val) {
 	if (houseIndex[val.HouseName]) {
@@ -83,3 +112,14 @@ router.get('/update-scoreboard', function(req,res) {
     res.send(JSON.stringify(scores));
 });
 module.exports = router;
+
+// route middleware to make sure a user is logged in
+function isLoggedIn(req, res, next) {
+
+    // if user is authenticated in the session, carry on 
+    if (req.isAuthenticated())
+        return next();
+
+    // if they aren't redirect them to the home page
+    res.redirect('/');
+}
