@@ -12,10 +12,17 @@
   "author": "Stav Gold, Alex Goldberger, Arely Miramontes",
   "license": "ISC",
   "dependencies": {
+	"bcrypt-nodejs": "latest",
     "body-parser": "latest",
+	"cookie-parser": "latest",
     "express": "latest",
+	"express-session": "~1.0.0",
     "fs": "latest",
     "http": "latest",
+	"mongoose": "latest",
+	"passport": "~0.1.17",
+	"passport-local": "~0.1.6",
+	"passport-local-mongoose": "latest",
     "path": "latest",
     "pug": "latest",
     "ws": "^1.1.0"
