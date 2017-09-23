@@ -4,31 +4,15 @@ doctype html
 html
     head
         title HPP Scoreboard
+        include favicons.html
+
+        meta(name='viewport' content='width=device-width, user-scalable=no')
+
         style
-            include style.css
+            include ../css/style.css
         script(src="https://code.jquery.com/jquery-1.12.0.min.js")
         script(src='scoreboard.js')
-    body
-        h1(class="header-title")
-        h2(class="header-subtitle") "It just means these tasks are designed to test you. In the most brutal way, they're almost cruel." - Hermione
-        div(id="testDiv")
-        table(class="scoreTable")
-            tbody
-                tr(class="teamRow")
-                    - var teamIdx = 1;
-                    each team,teamname in teamdata
-                        td(class="team-col"  id="team"+teamIdx)
-                            div(class="teamAvatar")
-                                //- img(src=""+team.LogoSrc)
-                                span(class="caption")
-                                    =teamname
-                                    - var CurrentPts = 0; var HouseList="";
-                                each housePts,houseName in team.Houses
-                                    - HouseList += "<li>"+houseName+": <span class='hsPt' id="+houseName+">"+housePts+"</span></li>"
-                                    - CurrentPts += housePts
-                                h2(class="CurrentPts" id="pts"+teamIdx)=CurrentPts
-                                unless Object.keys(team.Houses).length==1
-                                    .houseList.
-                                        !{HouseList}
-                                - teamIdx += 1;    
 
+
+    body
+        include scoreboard.html

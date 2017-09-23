@@ -1,0 +1,7 @@
+Options -Indexes
+
+RewriteEngine On
+RewriteRule ^/hpp$ http://127.0.0.1:49152/ [P,L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^/hpp/(.*)$ http://127.0.0.1:49152/$1 [P,L]
