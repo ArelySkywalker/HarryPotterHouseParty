@@ -1,49 +1,64 @@
-<!DOCTYPE html>
-<html>
-    <head>
-    <title>HPP Prefect</title>
-    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="favicons/apple-touch-icon-57x57.png" />
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="favicons/apple-touch-icon-114x114.png" />
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="favicons/apple-touch-icon-72x72.png" />
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="favicons/apple-touch-icon-144x144.png" />
-    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="favicons/apple-touch-icon-60x60.png" />
-    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="favicons/apple-touch-icon-120x120.png" />
-    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="favicons/apple-touch-icon-76x76.png" />
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="favicons/apple-touch-icon-152x152.png" />
-    <link rel="icon" type="image/png" href="favicons/favicon-196x196.png" sizes="196x196" />
-    <link rel="icon" type="image/png" href="favicons/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/png" href="favicons/favicon-32x32.png" sizes="32x32" />
-    <link rel="icon" type="image/png" href="favicons/favicon-16x16.png" sizes="16x16" />
-    <link rel="icon" type="image/png" href="favicons/favicon-128.png" sizes="128x128" />
-
-    <meta name="application-name" content="Harry Potter Party"/>
-
-    <meta name="msapplication-TileColor" content="#b8952e" />
-    <meta name="msapplication-TileImage" content="mstile-144x144.png" />
-    <meta name="msapplication-square70x70logo" content="mstile-70x70.png" />
-    <meta name="msapplication-square150x150logo" content="mstile-150x150.png" />
-    <meta name="msapplication-wide310x150logo" content="mstile-310x150.png" />
-    <meta name="msapplication-square310x310logo" content="mstile-310x310.png" />
-
-	<script src="https://code.jquery.com/jquery-1.12.0.js"></script>
-	<script type="text/javascript" src="https://cdn.datatables.net/t/bs/jqc-1.12.0,dt-1.10.11,r-2.0.2/datatables.js"></script>
-	<script language="javascript" src="prefect.js"> </script>
-	<!-- Adding in BootStrap FTW -->
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-	<!-- Optional theme -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-	<!-- Latest compiled and minified JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-	<style>
-	  .submit-div {padding-left: 20px;}
-	</style>
-
-</head>
 	<body>
+		<div class="container">
+			<div id="choose-house">
+				<h1>Choose your house!</h1>
+				<div class="row">
+					<div class="col-xs-6 house-option" id="gryffindor-house">
+						<img src="/images/proud_gryffin.png" data-house="gryffindor" />
+					</div>
+					<div class="col-xs-6 house-option" id="ravenclaw-house">
+						<img src="/images/proud_ravenclaw.png" data-house="ravenclaw" />
+					</div>
+					<div class="col-xs-6 house-option" id="hufflepuff-house">
+						<img src="/images/proud_hufflepuff.png" data-house="hufflepuff" />
+					</div>
+					<div class="col-xs-6 house-option" id="slytherin-house">
+						<img src="/images/proud_slyther.png" data-house="slytherin" />
+					</div>
+				</div>
+			</div>
+			<div id="give-points">
+				<h1>Give Points!</h1>
+				<p>Click a badge to award points!</p>
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="badge-container">
+							<div class="house-badges" data-points="1" >
+								<img src="" />
+								<div class="points">1</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="badge-container">
+							<div class="house-badges" data-points="5" >
+								<img src="" />
+								<div class="points">5</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="badge-container">
+							<div class="house-badges" data-points="10" >
+								<img src="" />
+								<div class="points">10</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="badge-container">
+							<div class="house-badges" data-points="20" >
+								<img src="" />
+								<div class="points">20</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	<!--
 	  <div class="table-responsive">
 	    <table class="authors-list table table-striped" id="dataTable" name="theTable">
             <thead>
@@ -60,11 +75,12 @@
             </tbody>
         </table>
     </div>
+
 	  <div class="submit-div">
 	    <a href="#" title="" class="add-author">Add Point Change</a>
 	    <br />
 	    <br />
 	    <button class="submit">Submit Points</button>
 	   </div>
+-->
 	</body>
-</html>

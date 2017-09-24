@@ -1,19 +1,21 @@
-<div class="jumbotron">
-  <h1>Register</h1>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<h1>Register</h1>
 
-  <form id="local-sign-in" class="collapse" action="/Register" method="post">
-    <div>
-        <p></p>
-        <label>Username:</label>
-        <input type="text" name="username"/>
-    </div>
-    <div>
-        <label>Password:</label>
-        <input type="password" name="password"/>
-    </div>
-    <div>
-        <input type="submit" class="btn btn-primary btn-sm" value="Register"/>
-    </div>
-  </form>
-
+			<form id="local-sign-in" action="/Register" method="post">
+				<div>
+					<label>Username:</label>
+					<input type="text" class="form-control" name="username" />
+				</div>
+				<div>
+					<label>Password:</label>
+					<input type="password" class="form-control" name="password" />
+				</div>
+				<div>
+					<button type="submit" class="btn btn-primary" value="Register" >Log In</button>
+				</div>
+			</form>
+		</div>
+	</div>
 </div>

@@ -1,7 +1,7 @@
 var lastQuote = null,
     FADESPEED = 500,
     UPDATESPEED = 3000,
-    QUOTESPEED = 6000;
+    QUOTESPEED = 10000;
 
 //any quotes you would like to display on the screen can be added here
 var quotes = ['"It just means these tasks are designed to test you. In the most brutal way, they\'re almost cruel."<br />- Hermione',

@@ -1,0 +1,41 @@
+/* latin */
+@font-face {
+  font-family: 'Homemade Apple';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Homemade Apple'), local('HomemadeApple'), url(https://fonts.gstatic.com/s/homemadeapple/v6/yg3UMEsefgZ8IHz_ryz86EW_vJ3SwAPP1y1E1dXjZPo.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+@font-face {
+  font-family: 'HarryPotter';
+  src: url('/css/fonts/HarryPotter.ttf') format('truetype');
+}
+
+.font-harry-potter {
+    font-family:'HarryPotter';
+}
+
+@font-face {
+  font-family: 'Hogwarts';
+  src: url('/css/fonts/Hogwarts.ttf') format('truetype');
+}
+
+.font-hogwarts {
+    font-family:'Hogwarts';
+}
+
+@font-face {
+  font-family: 'Inkpot';
+  src: url('/css/fonts/Inkpot.ttf') format('truetype');
+}
+
+.font-inkpot {
+    font-family:'Inkpot';
+}
+
+html, body { font-size: 10px; }
+
+@media (max-width: 480px) {
+    html, body { font-size: 8px; }
+}
