@@ -1,62 +1,184 @@
 $(document).ready(function() {
-	var animationPlaying = false;
-	var audio = new Audio('sounds/success_2.wav');
-	var prefect = {
-		house: ''
+	//load all game variables here
+	var Game = {
+		animationPlaying: false,
+		animationSpeed: 300,
+		audio: new Audio('sounds/success_2.wav'),
+		categories: {
+			"Bring provisions" : {
+				"Small snack" : 10,
+				"Alcohol" : 15,
+				"Big snack" : 20
+			},
+			"Win a game" : {
+				"HP dice game" : 15,
+				"HP Pong w/o snitch" : 20,
+				"Codenames/Patchwork/Resistance" : 25,
+				"Long game" : 40,
+				"HP Pong with snitch" : 50
+			},
+			"Get drunk" : {
+				"Take a shot" : 10,
+				"Brew a potion" : 15
+			},
+			"Engage in costumed antics" : {
+				"Wear a costume" : 15,
+				"Re-enact a scene (2 mins)": 30,
+				"Win costume contest" : 50
+			}
+		},
+		clickDelay: 1500,
+		houses: ['Gryffindor', 'Ravenclaw', 'Hufflepuff', 'Slytherin'],
+		possiblePoints: [1,5,10,15]
+	}
+
+	//load all user / prefect variables here
+	var Prefect = {
+		house: '',
+		reason: '',
+		detail: '',
 	};
 
+	//Load our templates
+	var houseTemplate = $('#house-tempate').html(),
+		pointsTemplate = $('#points-tempate').html();
 
 	//load our audio right away so there is no delay on the first play
-	audio.load();
+	Game.audio.load();
+
+	//BUILD our house options
+	var houseHTML = '';
+	Game.houses.forEach(function(house){
+		houseHTML += TemplateEngine(houseTemplate, { house: house });
+	});
+	$('#choose-house .row').append(houseHTML);
+
+	//BUILD our points
+	var pointsHTML = '';
+	Game.possiblePoints.forEach(function(points){
+		pointsHTML += TemplateEngine(pointsTemplate, { points: points });
+	});
+	$('#give-points .row').append(pointsHTML);
+
+	//BUILD our category options
+	var $reasons = $('.category.reason');
+	var $details = $('.category.details');
+	$.each(Game.categories,function(reason, details){
+		$reasons.append('<option value="'+reason+'">'+reason+'</value>');
+		$.each(details,function(detail, value){
+			//using 'value' will give the details point value instead of the name
+			$details.append('<option value="'+detail+'">'+detail+'</value>');
+		});
+	});
+
+	//FIND all interactive elements
+	var $chooseHouseDiv = $('#choose-house'),
+		$chooseHouseBtns = $('#choose-house .house-option img'),
+		$houseBadgeDiv = $('.house-badges'),
+		$houseBadgeBtns = $('.house-badges img'),
+		$givePoints = $('#give-points');
+
+	//CREATE all our particles!
+	initParticles();
+
+	/*****************************
+	 * ACTIONS
+	 *****************************/
+
+	//UPDATE reason for points
+	Prefect.reason = $reasons.val();
+	$reasons.change(function(e){
+		Prefect.reason = $(this).val();
+	});
+	Prefect.detail = $details.val();
+	$details.change(function(e){
+		Prefect.detail = $(this).val();
+	});
 
 	//SELECT A HOUSE
-	$('#choose-house .house-option img').click(function(e){
-		prefect.house = $(this).data('house');
-		$('#choose-house').addClass('house-selected');
-		$('.house-badges img').attr('src','/images/badge_'+prefect.house+'.png');
+	$chooseHouseBtns.click(function(e){
+		Prefect.house = $(this).data('house');
+		$chooseHouseDiv.addClass('house-selected');
+		$houseBadgeDiv.addClass(Prefect.house);
+		$houseBadgeBtns.attr('src','/images/badge_'+Prefect.house+'.png');
 		setTimeout(function(){
-			$('#choose-house').hide();
-			$('#give-points').addClass('active');
-
-		}, 300);
+			$chooseHouseDiv.hide();
+			$givePoints.addClass('active');
+		}, Game.animationSpeed);
 	});
 
 	//GIVE POINTS
-	$('.house-badges').click(function(e){
-		var $thisBadge = $(this);
+	$houseBadgeDiv.click(function(e){
+		var $thisBadge = $(this),
+			thisPoints = $thisBadge.data('points');
 
-		if(! animationPlaying){
-			animationPlaying = true;
-			audio.play();
+		if(! Game.animationPlaying){
+			Game.animationPlaying = true;
+			Game.audio.play();
 			$thisBadge.addClass('active');
+
+			addPoints(thisPoints, Prefect.house, Prefect.reason, Prefect.detail);
 
 			setTimeout(function(){
 				$thisBadge.removeClass('active');
-				audio.pause();
-				audio.currentTime = 0;
-				animationPlaying = false;
-			}, 2000);
+				Game.audio.pause();
+				Game.audio.currentTime = 0;
+				Game.animationPlaying = false;
+			}, Game.clickDelay);
 		}
 
 	});
 
-	//create all our particles!
-	hearts();
 });
 
-jQuery.rnd = function(m,n) {
-  m = parseInt(m);
-  n = parseInt(n);
-  return Math.floor( Math.random() * (n - m + 1) ) + m;
+/**
+ * Create common html bits using templates to
+ */
+function TemplateEngine(tpl, data) {
+	for(var key in data){
+		var re = new RegExp("<%" + key + "%>", "gi");
+		tpl = tpl.replace(re, data[key]);
+	}
+	return tpl;
 }
 
+function getRandomInt(min, max) {
+	min = parseInt(min);
+	max = parseInt(max);
+	return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+//Load all particles here
+function initParticles(){
+	hearts();
+}
+
+/**
+ * ADD POINTS to the Prefect's House
+ */
+function addPoints(points, house, reason, detail){
+	var data = [];
+	var dataRow = {
+		"HouseName": house,
+		"PointCategory": reason,
+		"PointSubcategory": detail,
+		"BaselineValue": points,
+		"Modifier": 0
+	};
+
+	data.push(dataRow);
+
+	$.post('/prefect',{data:JSON.stringify(data)});
+}
+
+//GENERATE our hearts
 function hearts() {
-   $.each($(".house-badges"), function(){
-	  var heartcount = 30;//($(this).width()/50)*5;
-	  for(var i = 0; i <= heartcount; i++) {
-		 var size = ($.rnd(20,50)/5);
-		 $(this).append('<span class="particle" style="top:' + $.rnd(20,80) + '%; left:' + $.rnd(0,95) + '%;width:' + size + 'px; height:' + size + 'px;"></span>');
-		 //animation-delay: ' + ($.rnd(0,30)/10) + 's;
-	  }
-   });
+	$.each($(".particle-container"), function(){
+		var heartcount = getRandomInt(25,35);
+		for(var i = 0; i <= heartcount; i++) {
+			var size = getRandomInt(4,10);
+			$(this).append('<span class="particle" style="top:' + getRandomInt(20,80) + '%; left:' + getRandomInt(0,95) + '%;width:' + size + 'px; height:' + size + 'px;"></span>');
+			//animation-delay: ' + ($.rnd(0,30)/10) + 's;
+		}
+	});
 }

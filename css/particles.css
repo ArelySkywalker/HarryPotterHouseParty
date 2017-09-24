@@ -1,0 +1,81 @@
+/* Particles!  https://codepen.io/z-/pen/bpxgWZ */
+
+.particle-container {
+	position: relative;
+}
+
+.particle-container .particle {
+	opacity:0;
+	position: absolute;
+}
+.particle-container.active .particle {
+	animation: hearts 1.5s ease-in infinite;
+}
+
+.particle-container .particle:before,
+.particle-container .particle:after {
+	position: absolute;
+	content: '';
+	border-radius:100px;
+	top:0px;
+	left:0px;
+	width:100%;
+	height:100%;
+}
+
+.particle-container .particle:before {
+	-webkit-transform: translateX(-50%);
+	transform:translateX(-50%);
+}
+.particle-container .particle:after {
+	-webkit-transform: translateY(-50%);
+	transform:translateY(-50%);
+}
+
+.particle-container.Gryffindor .particle {
+	background-color:rgba(222,111,111,1);
+}
+.particle-container.Gryffindor .particle:before,
+.particle-container.Gryffindor .particle:after {
+	background-color:rgba(222,111,111,1);
+}
+
+.particle-container.Ravenclaw .particle {
+	background-color:rgba(111,111,222,1);
+}
+.particle-container.Ravenclaw .particle:before,
+.particle-container.Ravenclaw .particle:after {
+	background-color:rgba(111,111,222,1);
+}
+
+.particle-container.Hufflepuff .particle {
+	background-color:rgba(222,222,111,1);
+}
+.particle-container.Hufflepuff .particle:before,
+.particle-container.Hufflepuff .particle:after {
+	background-color:rgba(222,222,111,1);
+}
+
+.particle-container.Slytherin .particle {
+	background-color:rgba(111,222,111,1);
+}
+.particle-container.Slytherin .particle:before,
+.particle-container.Slytherin .particle:after {
+	background-color:rgba(111,222,111,1);
+}
+
+
+@keyframes hearts {
+   0% {
+      opacity: 0;
+      transform:translate(0, 0%) rotate(45deg);
+   }
+   20% {
+      opacity: 0.8;
+      transform:translate(0, -20%) rotate(45deg);
+   }
+   100% {
+      opacity: 0;
+      transform:translate(0, -1000%) rotate(45deg); //Big hearts move faster
+   }
+}

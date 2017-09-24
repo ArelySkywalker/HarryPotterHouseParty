@@ -1,5 +1,6 @@
 @import 'css/fonts.css';
 @import 'css/normalize.css';
+@import 'css/particles.css';
 
 body {
   font-family: 'Homemade Apple', cursive;
@@ -28,13 +29,15 @@ body {
 }
 
 .header-subtitle {
+	border-top: 1px solid rgba(255,255,255,0.1);
     font-family:'Hogwarts';
     clear: both;
     color: white;
-    font-size: 2rem;
+    font-size: 3rem;
     line-height: 1.5;
     font-weight: 100;
-    margin: 20px 15px;
+    margin: 40px 15px 0;
+	padding-top: 40px;
     align-content: center;
     align-items: center;
 }
@@ -56,12 +59,16 @@ table.scoreTable {
 }
 */
 
-table.scoreTable {
+.scoreTable {
+	border-top: 1px solid rgba(255,255,255,0.1);
+	padding-top: 40px;
+	/*
     color: white;
     position: relative;
     width: 100%;
     text-align: center;
     table-layout:auto;
+	*/
 }
 
 td {
@@ -129,6 +136,7 @@ img {
 #team4 .backgrounds {
     background-image: url('../images/hufflepuff.gif');
 }
+
 
 /* MOBILE STYLES */
 @media (max-width: 480px) {
