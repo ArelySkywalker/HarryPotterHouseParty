@@ -1,41 +1,6 @@
-/* latin */
-@font-face {
-  font-family: 'Homemade Apple';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Homemade Apple'), local('HomemadeApple'), url(https://fonts.gstatic.com/s/homemadeapple/v6/yg3UMEsefgZ8IHz_ryz86EW_vJ3SwAPP1y1E1dXjZPo.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
-}
-
-@font-face {
-  font-family: 'HarryPotter';
-  src: url('/css/fonts/HarryPotter.ttf') format('truetype');
-}
-
-.font-harry-potter {
-    font-family:'HarryPotter';
-}
-
-@font-face {
-  font-family: 'Hogwarts';
-  src: url('/css/fonts/Hogwarts.ttf') format('truetype');
-}
-
-.font-hogwarts {
-    font-family:'Hogwarts';
-}
-
-@font-face {
-  font-family: 'Inkpot';
-  src: url('/css/fonts/Inkpot.ttf') format('truetype');
-}
-
-.font-inkpot {
-    font-family:'Inkpot';
-}
-
-
-html { font-size: 10px; }
+@import 'css/fonts.css';
+@import 'css/normalize.css';
+@import 'css/particles.css';
 
 body {
   font-family: 'Homemade Apple', cursive;
@@ -64,13 +29,15 @@ body {
 }
 
 .header-subtitle {
+	border-top: 1px solid rgba(255,255,255,0.1);
     font-family:'Hogwarts';
     clear: both;
     color: white;
-    font-size: 2rem;
+    font-size: 3rem;
     line-height: 1.5;
     font-weight: 100;
-    margin: 20px 15px;
+    margin: 40px 15px 0;
+	padding-top: 40px;
     align-content: center;
     align-items: center;
 }
@@ -92,12 +59,16 @@ table.scoreTable {
 }
 */
 
-table.scoreTable {
+.scoreTable {
+	border-top: 1px solid rgba(255,255,255,0.1);
+	padding-top: 40px;
+	/*
     color: white;
     position: relative;
     width: 100%;
     text-align: center;
     table-layout:auto;
+	*/
 }
 
 td {
@@ -166,9 +137,9 @@ img {
     background-image: url('../images/hufflepuff.gif');
 }
 
+
 /* MOBILE STYLES */
 @media (max-width: 480px) {
-    html { font-size: 8px; }
 
     .team-col {
         width: 50%;

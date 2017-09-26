@@ -1,7 +1,7 @@
 var lastQuote = null,
     FADESPEED = 500,
     UPDATESPEED = 3000,
-    QUOTESPEED = 6000;
+    QUOTESPEED = 10000;
 
 //any quotes you would like to display on the screen can be added here
 var quotes = ['"It just means these tasks are designed to test you. In the most brutal way, they\'re almost cruel."<br />- Hermione',
@@ -11,6 +11,10 @@ var quotes = ['"It just means these tasks are designed to test you. In the most 
             '"Of course it is happening inside your head, Harry, but why on earth should that mean it is not real?"<br />- Dumbledore',
             '"Happiness can be found, even in the darkest of times, if only one remembers to turn on the light."<br />- Dumbledore',
             '"I mean, it\'s sort of exciting isn\'t it? Breaking the rules."<br />- Hermione'];
+
+var scoreAudio = new Audio('sounds/success_3.flac');
+scoreAudio.load();
+scoreAudio.volume = 0.5;
 
 $(document).ready(function() {
     setupScoreboard();
@@ -57,6 +61,7 @@ function setupScoreboard(){
 
     $scoreTable.append('<div class="clearfix"></div>');
 
+	initParticles();
 }
 
 function TemplateEngine(tpl, data) {
@@ -68,42 +73,81 @@ function TemplateEngine(tpl, data) {
 }
 
 function rotateQuotes(){
-    var newQuote = getRandomInt(1, quotes.length) - 1;
+	var newQuote = getRandomInt(1, quotes.length) - 1;
 
-    //prevent the same quote being used twice
-    while(newQuote == lastQuote){
-        newQuote = getRandomInt(1, quotes.length) - 1;
-    }
+	//prevent the same quote being used twice
+	while(newQuote == lastQuote){
+		newQuote = getRandomInt(1, quotes.length) - 1;
+	}
 
-    $('h2.header-subtitle').fadeOut( FADESPEED, "linear", function(){
-        $('h2.header-subtitle').html(quotes[newQuote]).fadeIn( FADESPEED, "linear");
-    } );
+	$('h2.header-subtitle').fadeOut( FADESPEED, "linear", function(){
+		$('h2.header-subtitle').html(quotes[newQuote]).fadeIn( FADESPEED, "linear");
+	} );
 }
 
 function getRandomInt(min, max) {
-	min = Math.ceil(min);
-	max = Math.floor(max);
+	min = parseInt(min);
+	max = parseInt(max);
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 function ajaxd() {
-    $.ajax({
-	type: "GET",
-	url: "update-scoreboard",
-	success: function(res) {
-	    var scores = JSON.parse(res);
-	    $('.teamAvatar').each(function(index) {
-		thisTeamScores = scores[index];
-		if (thisTeamScores.length===1) $('.CurrentPts',this).html(thisTeamScores[0]);
-		else {
-		    var newTotal = 0;
-		    $('span.hsPt',this).each(function(liIdx) {
-			$(this).html(thisTeamScores[liIdx]);
-			newTotal += parseInt(thisTeamScores[liIdx]);
-		    });
-		    $('.CurrentPts',this).html(newTotal);
+
+	$.ajax({
+		type: "GET",
+		url: "update-scoreboard",
+		success: function(res) {
+		    var scores = JSON.parse(res);
+		    $('.teamAvatar').each(function(index) {
+				var $thisTeam = $(this),
+					thisTeamScores = scores[index],
+					newTotal = 0,
+					lastTotal = $thisTeam.data('total');
+				if (thisTeamScores.length===1){
+					newTotal = thisTeamScores[0]
+					$thisTeam.find('.CurrentPts').html(thisTeamScores[0]);
+				}else {
+					$('span.hsPt',$thisTeam).each(function(liIdx) {
+						$thisTeam.html(thisTeamScores[liIdx]);
+						newTotal += parseInt(thisTeamScores[liIdx]);
+						console.log('new '+newTotal);
+					});
+					$('.CurrentPts',$thisTeam).html(newTotal);
+				}
+
+				if(lastTotal){
+					if(newTotal > lastTotal){
+						scoreAudio.play();
+						$thisTeam.data('total', newTotal);
+						$thisTeam.parents('.particle-container').addClass('active');
+						setTimeout(function(){
+							scoreAudio.pause();
+							scoreAudio.currentTime = 0;
+							$thisTeam.parents('.particle-container').removeClass('active');
+						}, 1500);
+					}
+				}else{
+					lastTotal = newTotal;
+					$thisTeam.data('total', lastTotal)
+				}
+			});
 		}
-	    });
-	}
-    });
+	});
+}
+
+//Load all particles here
+function initParticles(){
+	hearts();
+}
+
+//GENERATE our hearts
+function hearts() {
+	$.each($(".particle-container"), function(){
+		var heartcount = getRandomInt(25,35);
+		for(var i = 0; i <= heartcount; i++) {
+			var size = getRandomInt(4,10);
+			$(this).append('<span class="particle" style="top:' + getRandomInt(20,80) + '%; left:' + getRandomInt(0,95) + '%;width:' + size + 'px; height:' + size + 'px;"></span>');
+			//animation-delay: ' + ($.rnd(0,30)/10) + 's;
+		}
+	});
 }
