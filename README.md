@@ -1,8 +1,6 @@
 # HarryPotterParty
 5/10/16
 
-## @authors Stav Gold, Alex Goldberger and Arely Miramontes
-
 Website URL: http://www.harrypotterhouseparty.com/
 
 What up, my glip-glops,
