@@ -1,7 +1,6 @@
 # HarryPotterParty
 5/10/16
 
-Website URL: http://www.harrypotterhouseparty.com/
 
 What up, my glip-glops,
 
